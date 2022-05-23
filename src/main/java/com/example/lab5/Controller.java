@@ -54,6 +54,7 @@ public class Controller extends VBox{
     @FXML private Button button;
     @FXML private TextField textfield;
     @FXML private Tooltip tool;
+
     String g;
     TestBean test = new TestBean(g);
 
@@ -84,24 +85,22 @@ public class Controller extends VBox{
                 .getAnnotation(Pattern.class);
         patt.validate(test.getName(),annotations);
         if(patt.isValid()){
-            tooltip("Correct");
             button.setDisable(false);
             InputStream stream = new FileInputStream("C:\\Users\\xXMik\\IdeaProjects\\lab5\\src\\main\\resources\\com\\example\\lab5\\zero.jpg");
             Image view = new Image(stream);
             image.setImage(view);
+            tool.setText("Correct");
+
 
         }else{
             button.setDisable(true);
-            tooltip(annotations.message());
             InputStream stream = new FileInputStream("C:\\Users\\xXMik\\IdeaProjects\\lab5\\src\\main\\resources\\com\\example\\lab5\\jeden.jpg");
             Image view = new Image(stream);
             image.setImage(view);
+            tool.setText(annotations.message());
+            Tooltip.install(image, tool);
         }
     }
 
-    void tooltip(String value){
-        tool.setText("");
-        tool.setText(value);
-    }
 
 }

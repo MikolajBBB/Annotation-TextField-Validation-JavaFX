@@ -2,7 +2,7 @@ package com.example.lab5;
 
 public class TestBean {
     @Pattern(regex="correct",message="incorrect")
-    public String Validation;
+    private String Validation;
 
     public TestBean() {
     }
